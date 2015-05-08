@@ -1,5 +1,5 @@
 {
-    "name": "jsn/jsnao",
+    "name": "jsnlib/jsnao",
     "type": "library",
     "description": "extend php ArrayObject",
     "keywords": ["ArrayObject"],
