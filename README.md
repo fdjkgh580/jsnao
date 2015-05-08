@@ -1,0 +1,2 @@
+# jsnao
+extend php ArrayObject 
