@@ -1,0 +1,10 @@
+{
+    "name": "fdjkgh580/jsnao",
+    "type": "library",
+    "description": "extend php ArrayObject",
+    "keywords": ["ArrayObject"],
+    "homepage": "https://github.com/fdjkgh580/jsnao",
+    "require": {
+        "php": ">=5.2.4"
+    }
+}
