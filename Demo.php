@@ -1,30 +1,43 @@
 <?
 include_once("jsnao.php");
 
-$data = array(
-			'a1'=>array(
-					'b1'=>'b1value',
-					'b2'=>'b2value',
-					'b3'=>'b3value'
-					)
-			);
+$data = array
+(
+    'item_1' => array
+    (
+        'a' => 'value_a',
+    	'b' => 'value_b',
+	),
+    'item_2' => array 
+    (
+        'red',
+        'sec' => 'green'
+    )
+);
 
 $data = new Jsnao($data);
 
 // OBJ 取值
-echo $data->a1->b1;   // output: b1value
+echo $data->item_1->a;   // output: value_a
+
+// 鍵為數字時，須改用陣列方式取值
+echo "<br>" . $data->item_2[0]; //output: red
 
 // OBJ 賦值
-$data->a1->b2 = 'newb2value';
-echo '<br>'.$data->a1->b2;   //output: newb2value
+$data->item_1->c = 'value_c';
+
+echo '<br>'.$data->item_1->c;   //output: value_c
 
 // ARRAY 取值
-echo '<br>'.$data['a1']['b3']; //output: b3value
+echo '<br>'.$data['item_1']['b']; //output: value_b
 
-// FOREACH 循環
-// output: b1=>b1value  b2=>newb2value  b3=>b3value
-foreach($data->a1 as $key=>$val){
-	echo '<br>'.$key.'=>'.$val;
-	}
+// FOREACH item_1
+foreach($data->item_1 as $key => $val)
+{
+	echo "<br> {$key} => {$val} ";
+}
+
+
+
 
 ?>
