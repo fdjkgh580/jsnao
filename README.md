@@ -3,43 +3,34 @@ easy use ArrayObject! 可以輕易地將陣列，改用物件呼叫。
 
 <pre>
 <?
-include_once("jsnao.php");
+include_once("../jsnao.php");
 
-$data = array
+// 如果鍵不是以數字為開頭，就使用這種普通方法。
+$cart = array
 (
-    'item_1' => array
+    'A001'   =>  array
     (
-        'a' => 'value_a',
-        'b' => 'value_b',
-    ),
-    'item_2' => array 
-    (
-        'red',
-        'sec' => 'green'
+        'name'  =>  'apple',
     )
 );
+$cart = new jsnao($cart);
 
-$data = new Jsnao($data);
+// 取值
+$cart->A001->name; //output: apple
 
-// OBJ 取值
-echo $data->item_1->a;   // output: value_a
+// 賦值
+$cart->A002 = array('name' => 'banana');
+//或
+$cart->A002 = array();
+$cart->A002->name = 'banana';
 
-// 鍵為數字時，須改用陣列方式取值
-echo "<br>" . $data->item_2[0]; //output: red
+// 修改
+$cart->A001->name = 'cherry';
 
-// OBJ 賦值
-$data->item_1->c = 'value_c';
+// 刪除
+$cart->A003 = array('name' => 'bag');
+unset($cart->A003);
 
-echo '<br>'.$data->item_1->c;   //output: value_c
-
-// ARRAY 取值
-echo '<br>'.$data['item_1']['b']; //output: value_b
-
-// FOREACH item_1
-foreach($data->item_1 as $key => $val)
-{
-    echo "<br> {$key} => {$val} ";
-}
-
+echo $cart;
 ?>
 </pre>
