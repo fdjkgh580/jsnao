@@ -1,0 +1,10 @@
+{
+    "name": "jsnlib/jsnao",
+    "type": "library",
+    "description": "easy use ArrayObject",
+    "keywords": ["ArrayObject"],
+    "homepage": "https://github.com/fdjkgh580/jsnao",
+    "require": {
+        "php": ">=5.2.4"
+    }
+}
