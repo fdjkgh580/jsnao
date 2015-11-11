@@ -3,18 +3,51 @@
  *
  * 取材自網友 http://bbs.phpchina.com/thread-123682-1-1.html 
  * 原文參考org.php
+ * version 1.1
  */
 class Jsnao extends ArrayObject
 {
 
     // 獲取 ArrayObject 因子
-    public function __construct(array $array = array())
+    /**
+     * aaaa
+     * @param mix $mix array | json | string
+     */
+    public function __construct($mix = null)
     {
+        $array = self::typefilter($mix);
         foreach ($array as &$value)
         {
             is_array($value) && $value = new self($value);
         }
         parent::__construct($array);
+    }
+
+    // 型別過濾
+    public function typefilter($mix)
+    {
+        $type = gettype($mix);
+        if ($type == "string")
+        {
+            $array = json_decode($mix, true);
+            if ($array == false) 
+            {
+                $array = array('data' => $mix);
+            }
+        }
+        elseif ($type == "array")
+        {
+            $array = $mix;
+        }
+        elseif ($type == "object")
+        {
+            $array = json_decode(json_encode($mix), true);
+        }
+        else 
+        {
+            $array = $mix;
+        }
+        return $array;
     }
 
     // 取值
