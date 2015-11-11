@@ -1,6 +1,33 @@
 # jsnao
 2015/11/11 改寫了兩年前的一支主力程式 Jsnao。主要是繼承 php 內部的 ArrayObject 。改寫了功能，可以輸入 string、json、stdClass、Array 的格式或形態，然後自動轉換為 ArrayObject 原生格式。透過 Jsnao 的操作，無論新增、修改、刪除，都可以依照不同場合需求，同時被 Object、Array、ArrayObject 三種呼叫方式混合呼叫使用。
 
+## 輸入範例
+### Array
+````php
+$mix = array('my'=>"Jsnao");
+$result = new Jsnao($mix);
+$result->my; // 輸出: Jsnao
+````
+### JSON
+````php
+$mix = '{"my":"Jsnao"}';
+$result = new Jsnao($mix);
+$result->my; // 輸出: Jsnao
+````
+### String
+````php
+$mix = 'Hello World';
+$result = new Jsnao($mix);
+$result->data; // 輸出: Hello World
+````
+### stdClass
+````php
+$mix = new stdClass;
+$mix->my = "Jsnao";
+$result = new Jsnao($mix);
+$result['my']; // 輸出: Jsnao
+````
+
 
 ## 一般用法
 ````php
