@@ -1,5 +1,5 @@
 # jsnao
-easy use ArrayObject! 可以輕易地將陣列，改用物件呼叫。
+輕易地將陣列，改用物件呼叫。
 
 ````php
 <?
@@ -34,3 +34,5 @@ unset($cart->A003);
 echo $cart;
 ?>
 ````
+
+其他的用法可以參考：https://github.com/fdjkgh580/jsnao/tree/master/Demo
