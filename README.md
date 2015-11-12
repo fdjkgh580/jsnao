@@ -36,13 +36,13 @@ $mix = 'Hello World';
 $result = new Jsnao($mix);
 $result->data; // 輸出: Hello World
 ````
-### Integer or Double 整數或小數
+### 整數或小數 Integer or Double
 ````php
 $mix = 123456;
 $result = new Jsnao($mix);
 $result->data; // 輸出: 123456
 ````
-### Null 空值
+### 空值 Null
 ````php
 $mix = null;
 $result = new Jsnao($mix);
