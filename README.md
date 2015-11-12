@@ -73,14 +73,16 @@ $cart->get(1000)->name;
 
 // 賦值
 $cart->A002 = array('name' => 'banana');
-//或
+// 或
 $cart->A002 = array();
 $cart->A002->name = 'banana';
-//或
+// 或
 $cart->put(2000, array('name' => 'lemon'));
 
 // 修改
 $cart->A001->name = 'cherry';
+// 或
+$cart->A001->put('name', 'cherry');
 
 // 刪除
 $cart->A003 = array('name' => 'bag');
