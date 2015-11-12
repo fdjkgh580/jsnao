@@ -157,7 +157,7 @@ echo $cart;
 ````php
 $result = new jsnao($array);
 $result->get(0);
-// or
+// 或
 $result[0];
 ````
 
