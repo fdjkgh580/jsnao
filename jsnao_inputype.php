@@ -12,16 +12,11 @@ class Jsnao_inputype
     }
     static private function is_string($mix)
     {
-        $decode      = json_decode($mix, true);
-
-        if (gettype($decode) == "integer" or $decode == false)
-        {
-            return self::is_integer($mix);
-        }
-
-        return $decode;
+        $decode = json_decode($mix, true);
+        if (gettype($decode) == "array") return $decode;
+        return self::wrap_element($mix);
     }
-    static private function is_integer($mix)
+    static private function wrap_element($mix)
     {
         return array('data' => $mix);
     }
@@ -37,8 +32,8 @@ class Jsnao_inputype
     {
         return array();
     }
-    static private function is_default($mix)
+    static public function __callStatic($name, $arguments)
     {
-        return $mix;
+        return self::wrap_element($arguments[0]);
     }
 }

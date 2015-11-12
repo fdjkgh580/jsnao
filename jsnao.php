@@ -8,7 +8,7 @@ include_once 'jsnao_inputype.php';
 
 class Jsnao extends ArrayObject
 {
-    protected $version = "1.1.1";
+    protected $version = "1.1.2";
 
     /**
      * 獲取 ArrayObject 因子
@@ -87,7 +87,7 @@ class Jsnao extends ArrayObject
     }
     
     // 根據索引賦值
-    public function put($index,$value)
+    public function put($index, $value)
     {
         is_array($value) && $value = new self($value);
         return $this->offsetSet($index, $value);
