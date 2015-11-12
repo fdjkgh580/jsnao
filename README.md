@@ -1,14 +1,17 @@
 # jsnao
-
-簡易的讓你的物件、陣列，能同時使用物件、陣列、ArrayObject的寫法呼叫。
-
-
-2015/11/11 改寫了兩年前的一支主力程式 Jsnao。主要是繼承 php 內部的 ArrayObject 。改寫了功能，可以輸入 string、json、stdClass、Array 的格式或形態，然後自動轉換為 ArrayObject 原生格式。透過 Jsnao 的操作，無論新增、修改、刪除，都可以依照不同場合需求，同時被 Object、Array、ArrayObject 三種呼叫方式混合呼叫使用。
+簡易的讓陣列(或其他格式)，可以使用更好懂的物件風格來呼叫。例如
+````php
+$data = array('say' => 'hello');
+````
+我們可以直接這麼使用
+````php
+echo $data->say; // 輸出 hello
+````
 
 其他說明可以看：<a href="http://jsnwork.kiiuo.com/archives/137/php-jsnao-%E7%B9%BC%E6%89%BF-arrayobject-%E6%9B%B4%E6%96%B9%E4%BE%BF%E7%9A%84%E9%99%A3%E5%88%97%E8%BD%89%E7%89%A9%E4%BB%B6%E5%AF%AB%E6%B3%95" target="_blank">我的部落格</a>
 
-## 輸入範例
-### Array
+## 支持多種格式輸入的範例
+### 陣列 Array
 ````php
 $mix = array('my'=>"Jsnao");
 $result = new Jsnao($mix);
@@ -20,26 +23,26 @@ $mix = '{"my":"Jsnao"}';
 $result = new Jsnao($mix);
 $result->my; // 輸出: Jsnao
 ````
-### Object
+### 物件 Object
 ````php
 $mix = new stdClass;
 $mix->my = "Jsnao";
 $result = new Jsnao($mix);
 $result['my']; // 輸出: Jsnao
 ````
-### String
+### 字串 String
 ````php
 $mix = 'Hello World';
 $result = new Jsnao($mix);
 $result->data; // 輸出: Hello World
 ````
-### Integer
+### Integer or Double 整數或小數
 ````php
 $mix = 123456;
 $result = new Jsnao($mix);
 $result->data; // 輸出: 123456
 ````
-### Null
+### Null 空值
 ````php
 $mix = null;
 $result = new Jsnao($mix);
