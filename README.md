@@ -20,18 +20,29 @@ $mix = '{"my":"Jsnao"}';
 $result = new Jsnao($mix);
 $result->my; // 輸出: Jsnao
 ````
+### Object
+````php
+$mix = new stdClass;
+$mix->my = "Jsnao";
+$result = new Jsnao($mix);
+$result['my']; // 輸出: Jsnao
+````
 ### String
 ````php
 $mix = 'Hello World';
 $result = new Jsnao($mix);
 $result->data; // 輸出: Hello World
 ````
-### stdClass
+### Integer
 ````php
-$mix = new stdClass;
-$mix->my = "Jsnao";
+$mix = 123456;
 $result = new Jsnao($mix);
-$result['my']; // 輸出: Jsnao
+$result->data; // 輸出: 123456
+````
+### Null
+````php
+$mix = null;
+$result = new Jsnao($mix);
 ````
 
 
@@ -141,3 +152,43 @@ echo $cart;
 ````
 
 # 方法
+## Jsnao::get()
+### 取值
+````php
+$result = new jsnao($array);
+$result->get(0);
+// or
+$result[0];
+````
+
+## Jsnao::put()
+### 賦值
+````php
+$result = new jsnao($array);
+$result->put(1, "banana");
+// 或
+$result->put[1] = "banana";
+// 或
+$result->first = "banana";
+````
+
+## Jsnao::toArray()
+### 取得陣列型態
+````php
+$result = new jsnao($array);
+$result->toArray();
+````
+
+## Jsnao::log()
+### 透過到 JavaScript 輸出到 console.log()
+````php
+$result = new jsnao($array);
+$result->log();
+````
+
+## var_export()
+### 輸出檢視錯誤時使用
+````php
+$result = new jsnao($array);
+echo $result;
+````
