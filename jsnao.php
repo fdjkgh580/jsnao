@@ -2,20 +2,21 @@
 /*
  *
  * 取材自網友 http://bbs.phpchina.com/thread-123682-1-1.html 
- * 原文參考org.php
  * version 1.1
  */
+include_once 'jsnao_inputype.php';
+
 class Jsnao extends ArrayObject
 {
+    protected $version = "1.1.1";
 
-    // 獲取 ArrayObject 因子
     /**
-     * aaaa
-     * @param mix $mix array | json | string
+     * 獲取 ArrayObject 因子
+     * @param mix $mix  可輸入的型態或資料格式 string | integer | array | object | json | NULL 
      */
     public function __construct($mix = null)
     {
-        $array = self::typefilter($mix);
+        $array = Jsnao_inputype::filter($mix);
         foreach ($array as &$value)
         {
             is_array($value) && $value = new self($value);
@@ -23,44 +24,21 @@ class Jsnao extends ArrayObject
         parent::__construct($array);
     }
 
-    // 型別過濾
-    public function typefilter($mix)
+    public function version ()
     {
-        $type = gettype($mix);
-        if ($type == "string")
-        {
-            $array = json_decode($mix, true);
-            if ($array == false) 
-            {
-                $array = array('data' => $mix);
-            }
-        }
-        elseif ($type == "array")
-        {
-            $array = $mix;
-        }
-        elseif ($type == "object")
-        {
-            $array = json_decode(json_encode($mix), true);
-        }
-        else 
-        {
-            $array = $mix;
-        }
-        return $array;
+        return $this->version;
     }
-
+    
     // 取值
     public function __get($index)
     {
-        return $this->offsetGet($index);
+        return $this->get($index);
     }
 
     // 賦值
     public function __set($index, $value)
     {
-        is_array($value) && $value = new self($value);
-        $this->offsetSet($index, $value);
+        $this->put($index, $value);
     }
 
     // 是否存在
@@ -91,12 +69,28 @@ class Jsnao extends ArrayObject
     {
         return var_export($this->toArray(), true);
     }
+
+    // 輸出到 JavaScript console.log
+    public function log()
+    {
+        $string = $this->__toString();
+        $this->console_log($string, true);
+    }
+
+    private function console_log($string, $isencode = false)
+    {
+        if ($isencode == true)
+        {
+            $string = json_encode($this->toArray());
+        }
+        echo "<script>console.log({$string})</script>";
+    }
     
     // 根據索引賦值
     public function put($index,$value)
     {
         is_array($value) && $value = new self($value);
-        $this->offsetSet($index, $value);
+        return $this->offsetSet($index, $value);
     }
     
     // 根據索引取值

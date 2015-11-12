@@ -1,24 +1,31 @@
 <?
 include_once("../jsnao.php");
 
-// 如果鍵不是以數字為開頭，就使用這種普通方法。
 $cart = array
 (
     'A001'   =>  array
     (
         'name'  =>  'apple',
+    ),
+    1000 => array
+    (
+        'name'  => 'water'
     )
 );
 $cart = new jsnao($cart);
 
 // 取值
 $cart->A001->name; //output: apple
+// 或
+$cart->get(1000)->name;
 
 // 賦值
 $cart->A002 = array('name' => 'banana');
 //或
 $cart->A002 = array();
 $cart->A002->name = 'banana';
+//或
+$cart->put(2000, array('name' => 'lemon'));
 
 // 修改
 $cart->A001->name = 'cherry';
