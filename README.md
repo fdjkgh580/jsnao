@@ -155,7 +155,7 @@ echo $cart;
 ````
 
 # 方法
-## Jsnao::get()
+## Jsnao::get($index)
 ### 取值
 ````php
 $result = new jsnao($array);
@@ -164,7 +164,7 @@ $result->get(0);
 $result[0];
 ````
 
-## Jsnao::put()
+## Jsnao::put($index, $value)
 ### 賦值
 ````php
 $result = new jsnao($array);
