@@ -1,14 +1,12 @@
 <?
 /*
- *
  * 取材自網友 http://bbs.phpchina.com/thread-123682-1-1.html 
- * version 1.1
  */
 include_once 'jsnao_inputype.php';
 
 class Jsnao extends ArrayObject
 {
-    protected $version = "1.1.2";
+    protected $version = "1.1.3";
 
     /**
      * 獲取 ArrayObject 因子
@@ -70,11 +68,20 @@ class Jsnao extends ArrayObject
         return var_export($this->toArray(), true);
     }
 
-    // 輸出到 JavaScript console.log
-    public function log()
+    // 輸出到 JavaScript console.log，回傳 $this 可供串接
+    public function log($title = NULL)
     {
         $string = $this->__toString();
+        if ($title !== NULL)
+        {
+            $this->console_log("'§ -------- {$title} -------- §'", false);
+        }
         $this->console_log($string, true);
+        if ($title !== NULL)
+        {
+            $this->console_log("'                              '", false);
+        }
+        return $this;
     }
 
     private function console_log($string, $isencode = false)
