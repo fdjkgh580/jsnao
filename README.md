@@ -1,4 +1,5 @@
-# jsnao
+# jsnao 
+v 1.1.3
 簡易的讓陣列(或其他格式)，可以使用更好懂的物件風格來呼叫。例如
 ````php
 $data = array('say' => 'hello');
