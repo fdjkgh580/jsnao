@@ -2,7 +2,7 @@
     "name": "jsnlib/jsnao",
     "type": "library",
     "description": "easy use ArrayObject",
-    "keywords": ["ArrayObject"],
+    "keywords": ["array", "object", "convert", "ArrayObject"],
     "license": "MIT",
     "homepage": "https://github.com/fdjkgh580/jsnao",
     "require": {
