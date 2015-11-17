@@ -184,11 +184,36 @@ $result = new jsnao($array);
 $result->toArray();
 ````
 
-## Jsnao::log()
+## Jsnao::log($title = NULL)
 ### 透過到 JavaScript 輸出到 console.log()
 ````php
 $result = new jsnao($array);
 $result->log();
+// 或
+$result->log("自訂顯示名稱");
+// 或
+$data = $result->log();
+````
+也可以放在想要檢視的定位點，例如
+````php
+$data = array
+(
+    'profile' => array
+    (
+        'phone' => "0939-333-333",
+        'tel' => "07-333-3333"
+    ), 
+);
+$data = new jsnao($data);
+echo $data->log()->profile->phone; 
+// 輸出 0939-333-333
+// console.log() 為 Object {profile: Object {phone: "0939-333-333", tel: "07-333-3333"}}
+
+// 或是放在另外一個定位點
+
+echo $data->profile->log()->phone; 
+// 輸出 0939-333-333
+// console.log() 為 Object {phone: "0939-333-333", tel: "07-333-3333"}
 ````
 
 ## var_export()
