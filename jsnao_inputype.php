@@ -8,17 +8,29 @@ class Jsnao_inputype
     static public function filter($mix)
     {
         $method = "is_" . gettype($mix);
-        return self::$method($mix);
+
+        if (self::is_method($method))
+        {
+            return self::$method($mix);
+        }
+        return self::is_string($mix);
+    }
+
+    //是否存在這個方法？
+    static private function is_method($method)
+    {
+        $cname = __CLASS__;
+        return method_exists(new $cname, $method);
+    }
+    static private function is_boolean($mix)
+    {
+        return array();
     }
     static private function is_string($mix)
     {
         $decode = json_decode($mix, true);
         if (gettype($decode) == "array") return $decode;
         return self::wrap_element($mix);
-    }
-    static private function wrap_element($mix)
-    {
-        return array('data' => $mix);
     }
     static private function is_array($mix)
     {
@@ -31,6 +43,10 @@ class Jsnao_inputype
     static private function is_NULL($mix)
     {
         return array();
+    }
+    static private function wrap_element($mix)
+    {
+        return array('data' => $mix);
     }
     static public function __callStatic($name, $arguments)
     {

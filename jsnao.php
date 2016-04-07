@@ -6,7 +6,7 @@ include_once 'jsnao_inputype.php';
 
 class Jsnao extends ArrayObject
 {
-    protected $version = "1.1.3";
+    protected $version = "1.1.4";
 
     /**
      * 獲取 ArrayObject 因子
