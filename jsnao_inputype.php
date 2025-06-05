@@ -1,55 +1,65 @@
-<?
+<?php
+declare(strict_types=1);
+
 /**
  * 輸入的格式過濾，最後都會回傳陣列
  */
 class Jsnao_inputype
 {
     //唯一對外的呼叫方法。依照輸入的型態對應適合的方法
-    static public function filter($mix)
+    public static function filter(mixed $mix): array
     {
-        $method = "is_" . gettype($mix);
+        $method = 'is_' . gettype($mix);
 
-        if (self::is_method($method))
-        {
+        if (self::is_method($method)) {
             return self::$method($mix);
         }
         return self::is_string($mix);
     }
 
     //是否存在這個方法？
-    static private function is_method($method)
+    private static function is_method(string $method): bool
     {
-        $cname = __CLASS__;
-        return method_exists(new $cname, $method);
+        return method_exists(__CLASS__, $method);
     }
-    static private function is_boolean($mix)
+
+    private static function is_boolean($mix): array
     {
-        return array();
+        return [];
     }
-    static private function is_string($mix)
+
+    private static function is_string(string $mix): array
     {
         $decode = json_decode($mix, true);
-        if (gettype($decode) == "array") return $decode;
+        if (is_array($decode)) {
+            return $decode;
+        }
         return self::wrap_element($mix);
     }
-    static private function is_array($mix)
+
+    private static function is_array(array $mix): array
     {
-        return $array = $mix;
+        return $mix;
     }
-    static private function is_object($mix)
+
+    private static function is_object(object $mix): array
     {
-        return json_decode(json_encode($mix), true);
+        return json_decode(json_encode($mix, JSON_THROW_ON_ERROR), true, 512, JSON_THROW_ON_ERROR);
     }
-    static private function is_NULL($mix)
+
+    private static function is_NULL($mix): array
     {
-        return array();
+        return [];
     }
-    static private function wrap_element($mix)
+
+    private static function wrap_element(mixed $mix): array
     {
-        return array('data' => $mix);
+        return ['data' => $mix];
     }
-    static public function __callStatic($name, $arguments)
+
+    public static function __callStatic(string $name, array $arguments): array
     {
-        return self::wrap_element($arguments[0]);
+        return self::wrap_element($arguments[0] ?? null);
     }
 }
+

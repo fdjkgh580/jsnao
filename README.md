@@ -95,7 +95,7 @@ echo $cart;
 
 ## 陣列用法
 ````php
-<?
+<?php
 include_once("../jsnao.php");
 
 // 購物車
@@ -127,7 +127,7 @@ echo $cart;
 
 ## 繼承 ArrayObject 原生用法
 ````php
-<?
+<?php
 include_once("../jsnao.php");
 
 // 購物車
