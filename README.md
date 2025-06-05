@@ -53,7 +53,7 @@ $result = new Jsnao($mix);
 
 ## 一般用法
 ````php
-include_once("../jsnao.php");
+include_once("../Jsnao.php");
 
 $cart = array
 (
@@ -96,7 +96,7 @@ echo $cart;
 ## 陣列用法
 ````php
 <?php
-include_once("../jsnao.php");
+include_once("../Jsnao.php");
 
 // 購物車
 $cart = array
@@ -128,7 +128,7 @@ echo $cart;
 ## 繼承 ArrayObject 原生用法
 ````php
 <?php
-include_once("../jsnao.php");
+include_once("../Jsnao.php");
 
 // 購物車
 $cart = array
@@ -224,3 +224,14 @@ echo $data->profile->log()->phone;
 $result = new jsnao($array);
 echo $result;
 ````
+
+## 安裝與測試
+安裝 PHP 8.3 以上與 Composer 後，執行下列指令安裝套件並跑測試：
+
+```bash
+composer install
+vendor/bin/phpunit --configuration phpunit.xml.dist
+```
+
+也可以直接執行 `setup.sh` 自動完成安裝與測試。
+

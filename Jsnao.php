@@ -1,12 +1,14 @@
 <?php
 declare(strict_types=1);
 
+namespace Jsnao;
+
 /**
  * 取材自網友 http://bbs.phpchina.com/thread-123682-1-1.html
  */
-require_once __DIR__ . '/jsnao_inputype.php';
 
-class Jsnao extends ArrayObject
+
+class Jsnao extends \ArrayObject
 {
     protected string $version = '1.1.4';
 
@@ -16,7 +18,7 @@ class Jsnao extends ArrayObject
      */
     public function __construct(mixed $mix = null)
     {
-        $array = Jsnao_inputype::filter($mix);
+        $array = JsnaoInputType::filter($mix);
         foreach ($array as &$value) {
             if (is_array($value)) {
                 $value = new self($value);

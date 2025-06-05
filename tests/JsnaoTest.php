@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-
-require_once __DIR__ . '/../jsnao.php';
+use Jsnao\Jsnao;
 
 class JsnaoTest extends TestCase
 {
@@ -94,5 +93,27 @@ class JsnaoTest extends TestCase
             '002' => ['name' => 'banana'],
         ];
         $this->assertSame($expected, $cart->toArray());
+    }
+
+    public function testStringInput(): void
+    {
+        $str = 'Hello World';
+        $obj = new Jsnao($str);
+        $this->assertSame(['data' => 'Hello World'], $obj->toArray());
+    }
+
+    public function testObjectInput(): void
+    {
+        $o = new \stdClass();
+        $o->foo = 'bar';
+        $obj = new Jsnao($o);
+        $this->assertSame('bar', $obj->foo);
+    }
+
+    public function testJsonInput(): void
+    {
+        $json = '{"foo":"bar"}';
+        $obj = new Jsnao($json);
+        $this->assertSame('bar', $obj->foo);
     }
 }

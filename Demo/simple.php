@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../jsnao.php';
+require_once __DIR__ . '/../Jsnao.php';
 
 $cart = [
     'A001' => [

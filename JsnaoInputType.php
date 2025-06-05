@@ -1,10 +1,12 @@
 <?php
 declare(strict_types=1);
 
+namespace Jsnao;
+
 /**
  * 輸入的格式過濾，最後都會回傳陣列
  */
-class Jsnao_inputype
+class JsnaoInputType
 {
     //唯一對外的呼叫方法。依照輸入的型態對應適合的方法
     public static function filter(mixed $mix): array
