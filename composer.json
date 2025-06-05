@@ -1,14 +1,24 @@
 {
-    "name": "jsnlib/jsnao",
-    "type": "library",
-    "description": "easy use ArrayObject",
-    "keywords": ["array", "object", "convert", "ArrayObject"],
-    "license": "MIT",
-    "homepage": "https://github.com/fdjkgh580/jsnao",
-    "require": {
-        "php": ">=5.2.4"
-    },
-    "autoload": {
-        "classmap": ["jsnao.php"]
+  "name": "jsnlib/jsnao",
+  "type": "library",
+  "description": "easy use ArrayObject",
+  "keywords": [
+    "array",
+    "object",
+    "convert",
+    "ArrayObject"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/fdjkgh580/jsnao",
+  "require": {
+    "php": ">=8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Jsnao\\": ""
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10"
+  }
 }
